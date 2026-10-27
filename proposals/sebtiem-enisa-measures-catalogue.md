@@ -37,6 +37,7 @@ The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](ht
 3. **Do not raise the Light-Weight bar.** Each Light-Weight entry defines a **baseline** measure that reflects current, widespread practice. Stricter measures from the ENISA Playbook are listed as **enhanced** and are always optional.
 4. **Heavy-Weight is interim.** Heavy-Weight measures are offered as input until harmonised standards are available. They do not pre-empt the group's open decision on whether Heavy-Weight attestations should involve a full conformity assessment.
 5. **Tool-neutral.** Tools and formats are named as examples. Any equivalent means of meeting a measure is acceptable.
+6. **Publicly observable evidence.** Wherever possible, evidence should be checkable from public sources without the project's involvement, for example a forge, a mailing list archive, a code review system or a release server. Links in an attestation should point to the authoritative source, and should show the practice, not only the rule. Where an observable form of a measure exists, it is preferred for the baseline. Measures that can only be met with the project's input are acceptable, but should be the conscious exception.
 
 ## Two Axes: Tier and Evidence Level
 The catalogue keeps the existing tiers and adds an evidence level, so that a claim can be strengthened without starting over.
