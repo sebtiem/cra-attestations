@@ -54,17 +54,11 @@ This reflects ENISA's own distinction: an attestation is a claim, while verifica
 
 ## Recording Issuer, Verification and Date
 
-An evidence level alone does not say who makes a claim, who checked it, or
-when. All three change how much a claim is worth, so an attestation records
-them alongside the evidence level:
+An evidence level alone does not say who makes a claim, who checked it, or when. All three change how much a claim is worth, so an attestation records them alongside the evidence level:
 
 - **Issuer:** who makes the claim, for example the maintainers.
-- **Verified by:** for E3, who checked the claim. The verifier signs the
-  attestation, for example via Sigstore or in-toto, rather than only being
-  named. An optional note discloses any relationship between issuer and
-  verifier.
-- **Date:** when the evidence was checked. A date taken from a transparency log, such as Rekor or SCITT, can be verified independently. 
-A self-declared date is also acceptable, for example backed by the forge's history.
+- **Verified by:** for E3, who checked the claim. The verifier signs the attestation, for example via Sigstore or in-toto, rather than only being named. An optional note discloses any relationship between issuer and verifier.
+- **Date:** when the evidence was checked. A date taken from a transparency log, such as Rekor or SCITT, can be verified independently. A self-declared date is also acceptable, for example backed by the forge's history.
 
 Evidence bound to a release, such as an SBOM or a signature, stays valid for
 that release. Claims about a project's practice can change over time; the
@@ -81,9 +75,9 @@ Subject: pkg:maven/org.example/libfoo
 Issuer: libfoo maintainers
 
 - [x] QA.01: The Project must document [...] all direct third-party dependencies.
-      Link to SBOM: https://example.org/libfoo/1.4.0/sbom.cdx.json
+      Link to SBOM or lockfile: https://example.org/libfoo/1.4.0/sbom.cdx.json
       Measure: M-QA.01 (enhanced), Evidence level: E2
-      Date: 2026-10-20 (Rekor entry)
+      Date: 2026-10-20
 ```
 
 # Catalogue Entry Format
@@ -240,3 +234,4 @@ Transparency Exchange API (TEA) for discovery and distribution.
 2. Should the evidence levels become part of the template itself?
 3. Which further ENISA design playbooks belong in the Heavy-Weight part?
 4. Do the indicative CRA references match Annex C of the ENISA Playbook?
+5. Licensing: Should the catalogue be published under CC BY 4.0, and should public attestations be recommended under CC0 to allow unrestricted reuse?
