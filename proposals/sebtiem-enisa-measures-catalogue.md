@@ -24,7 +24,7 @@ This proposal complements the [two-tier approach](./gen-two-tier-approach.md) an
 
 Instead, it proposes a separate, versioned **measures catalogue**: a practical guide that explains, item by item, how a project can meet a template item, and which evidence a manufacturer can expect. An attestation stays short and stable; it simply references the catalogue version it was written against.
 
-The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](...) (July 2026), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); measures have been adapted and condensed. Each playbook defines a checklist, minimum evidence and a release gate, and many of these map directly onto practices open source projects already follow.
+The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](https://www.enisa.europa.eu/sites/default/files/2026-07/ENISA_Secure_By_Design_and_Default_Playbook_v1.pdf) (July 2026), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); measures have been adapted and condensed. Each playbook defines a checklist, minimum evidence and a release gate, and many of these map directly onto practices open source projects already follow.
 
 ## Why a Separate Catalogue?
 1. **Stable attestations.** Template items do not change when guidance evolves. A new catalogue version can tighten or relax measures without invalidating attestations issued against an earlier version.
@@ -72,8 +72,6 @@ The template remains unchanged. An issuer may add the catalogue version and, per
 
 ```
 Catalogue: ORC WG VSA Measures Catalogue, version 0.1
-Subject: pkg:maven/org.example/libfoo
-Issuer: libfoo maintainers
 
 - [x] QA.01: The Project must document [...] all direct third-party dependencies.
       Link to SBOM or lockfile: https://example.org/libfoo/1.4.0/sbom.cdx.json
