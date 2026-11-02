@@ -10,6 +10,7 @@ _**Status of this document**_
 | Revision | Date       | Summary of Changes                                  |
 | -------- | ---------- | --------------------------------------------------- |
 | 0.1      | 20.10.2026 | Initial proposal by Sebastian Tiemann to the ORC WG              |
+| 0.2      | 03.11.2026 | Incorporated review feedback: observable evidence, issuer, verification and date, licensing question |
 
 ## Editor's Notes
 - _**TODO:**_ verify all CRA references against Annex C of the ENISA Playbook.
@@ -23,7 +24,7 @@ This proposal complements the [two-tier approach](./gen-two-tier-approach.md) an
 
 Instead, it proposes a separate, versioned **measures catalogue**: a practical guide that explains, item by item, how a project can meet a template item, and which evidence a manufacturer can expect. An attestation stays short and stable; it simply references the catalogue version it was written against.
 
-The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](https://www.enisa.europa.eu/sites/default/files/2026-07/ENISA_Secure_By_Design_and_Default_Playbook_v1.pdf) (July 2026), whose playbooks each define a checklist, minimum evidence and a release gate. Many of these map directly onto practices open source projects already follow.
+The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](https://www.enisa.europa.eu/sites/default/files/2026-07/ENISA_Secure_By_Design_and_Default_Playbook_v1.pdf) (July 2026), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); measures have been adapted and condensed. Each playbook defines a checklist, minimum evidence and a release gate, and many of these map directly onto practices open source projects already follow.
 
 ## Why a Separate Catalogue?
 1. **Stable attestations.** Template items do not change when guidance evolves. A new catalogue version can tighten or relax measures without invalidating attestations issued against an earlier version.
@@ -37,6 +38,7 @@ The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](ht
 3. **Do not raise the Light-Weight bar.** Each Light-Weight entry defines a **baseline** measure that reflects current, widespread practice. Stricter measures from the ENISA Playbook are listed as **enhanced** and are always optional.
 4. **Heavy-Weight is interim.** Heavy-Weight measures are offered as input until harmonised standards are available. They do not pre-empt the group's open decision on whether Heavy-Weight attestations should involve a full conformity assessment.
 5. **Tool-neutral.** Tools and formats are named as examples. Any equivalent means of meeting a measure is acceptable.
+6. **Publicly observable evidence.** Wherever possible, evidence should be checkable from public sources without the project's involvement, for example a forge, a mailing list archive, a code review system or a release server. Links in an attestation should point to the authoritative source, and should show the practice, not only the rule. Where an observable form of a measure exists, it is preferred for the baseline. Measures that can only be met with the project's input are acceptable, but should be the conscious exception.
 
 ## Two Axes: Tier and Evidence Level
 The catalogue keeps the existing tiers and adds an evidence level, so that a claim can be strengthened without starting over.
@@ -51,14 +53,30 @@ E3 does not imply a conformity assessment by a notified body; whether Heavy-Weig
 
 This reflects ENISA's own distinction: an attestation is a claim, while verification is a separate step.
 
+## Recording Issuer, Verification and Date
+
+An evidence level alone does not say who makes a claim, who checked it, or when. All three change how much a claim is worth, so an attestation records them alongside the evidence level:
+
+- **Issuer:** who makes the claim, as recorded in AU.01 of the template.
+- **Verified by:** for E3, who checked the claim. The verifier signs the attestation, for example via Sigstore or in-toto, rather than only being named. An optional note discloses any relationship between issuer and verifier.
+- **Date:** when the evidence was checked. A date taken from a transparency log, such as Rekor or SCITT, can be verified independently. A self-declared date is also acceptable, for example backed by the forge's history.
+
+Evidence bound to a release, such as an SBOM or a signature, stays valid for
+that release. Claims about a project's practice can change over time; the
+date allows a manufacturer to weigh them under Article 13(5). A signed
+transparency log entry works for public attestations as well as for
+bilateral ones, where only a hash needs to be logged.
+
 ## How an Attestation References the Catalogue
 The template remains unchanged. An issuer may add the catalogue version and, per item, the evidence level:
 
 ```
 Catalogue: ORC WG VSA Measures Catalogue, version 0.1
+
 - [x] QA.01: The Project must document [...] all direct third-party dependencies.
-      Link to SBOM or lockfile: https://example.org/releases/1.4.0/sbom.cdx.json
+      Link to SBOM or lockfile: https://example.org/libfoo/1.4.0/sbom.cdx.json
       Measure: M-QA.01 (enhanced), Evidence level: E2
+      Date: 2026-10-20
 ```
 
 # Catalogue Entry Format
@@ -215,3 +233,5 @@ Transparency Exchange API (TEA) for discovery and distribution.
 2. Should the evidence levels become part of the template itself?
 3. Which further ENISA design playbooks belong in the Heavy-Weight part?
 4. Do the indicative CRA references match Annex C of the ENISA Playbook?
+5. Licensing: Should the catalogue be published under CC BY 4.0, and should public attestations be recommended under CC0 to allow unrestricted reuse?
+6. Are attestations issued bilaterally, to several manufacturers, or publicly (e.g. for foundation projects), and should there be one attestation per release line?
