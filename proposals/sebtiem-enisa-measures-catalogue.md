@@ -52,14 +52,38 @@ E3 does not imply a conformity assessment by a notified body; whether Heavy-Weig
 
 This reflects ENISA's own distinction: an attestation is a claim, while verification is a separate step.
 
+## Recording Issuer, Verification and Date
+
+An evidence level alone does not say who makes a claim, who checked it, or
+when. All three change how much a claim is worth, so an attestation records
+them alongside the evidence level:
+
+- **Issuer:** who makes the claim, for example the maintainers.
+- **Verified by:** for E3, who checked the claim. The verifier signs the
+  attestation, for example via Sigstore or in-toto, rather than only being
+  named. An optional note discloses any relationship between issuer and
+  verifier.
+- **Date:** when the evidence was checked. A date taken from a transparency log, such as Rekor or SCITT, can be verified independently. 
+A self-declared date is also acceptable, for example backed by the forge's history.
+
+Evidence bound to a release, such as an SBOM or a signature, stays valid for
+that release. Claims about a project's practice can change over time; the
+date allows a manufacturer to weigh them under Article 13(5). A signed
+transparency log entry works for public attestations as well as for
+bilateral ones, where only a hash needs to be logged.
+
 ## How an Attestation References the Catalogue
 The template remains unchanged. An issuer may add the catalogue version and, per item, the evidence level:
 
 ```
 Catalogue: ORC WG VSA Measures Catalogue, version 0.1
+Subject: pkg:maven/org.example/libfoo
+Issuer: libfoo maintainers
+
 - [x] QA.01: The Project must document [...] all direct third-party dependencies.
-      Link to SBOM or lockfile: https://example.org/releases/1.4.0/sbom.cdx.json
+      Link to SBOM: https://example.org/libfoo/1.4.0/sbom.cdx.json
       Measure: M-QA.01 (enhanced), Evidence level: E2
+      Date: 2026-10-20 (Rekor entry)
 ```
 
 # Catalogue Entry Format
