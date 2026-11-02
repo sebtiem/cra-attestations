@@ -10,6 +10,7 @@ _**Status of this document**_
 | Revision | Date       | Summary of Changes                                  |
 | -------- | ---------- | --------------------------------------------------- |
 | 0.1      | 20.10.2026 | Initial proposal by Sebastian Tiemann to the ORC WG              |
+| 0.2      | 03.11.2026 | Incorporated review feedback: observable evidence, issuer, verification and date, licensing question |
 
 ## Editor's Notes
 - _**TODO:**_ verify all CRA references against Annex C of the ENISA Playbook.
@@ -23,7 +24,7 @@ This proposal complements the [two-tier approach](./gen-two-tier-approach.md) an
 
 Instead, it proposes a separate, versioned **measures catalogue**: a practical guide that explains, item by item, how a project can meet a template item, and which evidence a manufacturer can expect. An attestation stays short and stable; it simply references the catalogue version it was written against.
 
-The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](https://www.enisa.europa.eu/sites/default/files/2026-07/ENISA_Secure_By_Design_and_Default_Playbook_v1.pdf) (July 2026), whose playbooks each define a checklist, minimum evidence and a release gate. Many of these map directly onto practices open source projects already follow.
+The catalogue draws on the [ENISA Secure by Design and Default Playbook v1.0](...) (July 2026), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); measures have been adapted and condensed. Each playbook defines a checklist, minimum evidence and a release gate, and many of these map directly onto practices open source projects already follow.
 
 ## Why a Separate Catalogue?
 1. **Stable attestations.** Template items do not change when guidance evolves. A new catalogue version can tighten or relax measures without invalidating attestations issued against an earlier version.
@@ -56,7 +57,7 @@ This reflects ENISA's own distinction: an attestation is a claim, while verifica
 
 An evidence level alone does not say who makes a claim, who checked it, or when. All three change how much a claim is worth, so an attestation records them alongside the evidence level:
 
-- **Issuer:** who makes the claim, for example the maintainers.
+- **Issuer:** who makes the claim, as recorded in AU.01 of the template.
 - **Verified by:** for E3, who checked the claim. The verifier signs the attestation, for example via Sigstore or in-toto, rather than only being named. An optional note discloses any relationship between issuer and verifier.
 - **Date:** when the evidence was checked. A date taken from a transparency log, such as Rekor or SCITT, can be verified independently. A self-declared date is also acceptable, for example backed by the forge's history.
 
@@ -235,3 +236,4 @@ Transparency Exchange API (TEA) for discovery and distribution.
 3. Which further ENISA design playbooks belong in the Heavy-Weight part?
 4. Do the indicative CRA references match Annex C of the ENISA Playbook?
 5. Licensing: Should the catalogue be published under CC BY 4.0, and should public attestations be recommended under CC0 to allow unrestricted reuse?
+6. Are attestations issued bilaterally, to several manufacturers, or publicly (e.g. for foundation projects), and should there be one attestation per release line?
